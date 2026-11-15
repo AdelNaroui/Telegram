@@ -11,12 +11,10 @@ jobs:
         with:
           distribution: temurin
           java-version: 17
-
-      - uses: android-actions/setup-android@v3
-
       - name: Install NDK
-        run: sdkmanager "ndk;27.0.12077973" "cmake;3.22.1"
-
+        run: |
+          yes | sdkmanager --licenses > /dev/null || true
+          sdkmanager "ndk;27.0.12077973" "cmake;3.22.1" "build-tools;36.0.0" "platforms;android-36"
       - name: Create keystore
         run: |
           keytool -genkeypair -v -keystore TMessagesProj/config/release.keystore \
