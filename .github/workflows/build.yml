@@ -22,8 +22,9 @@ jobs:
           yes | $SDKM --licenses > /dev/null || true
           $SDKM "ndk;27.0.12077973" "cmake;3.22.1" "build-tools;36.0.0" "platforms;android-36"
 
-      - name: Create keystore
+            - name: Create keystore
         run: |
+          rm -f TMessagesProj/config/release.keystore
           keytool -genkeypair -v -keystore TMessagesProj/config/release.keystore \
             -alias mykey -keyalg RSA -keysize 2048 -validity 10000 \
             -storepass mypass123 -keypass mypass123 -dname "CN=Wanda"
