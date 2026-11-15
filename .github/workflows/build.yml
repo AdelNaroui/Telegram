@@ -11,7 +11,8 @@ jobs:
         with:
           distribution: temurin
           java-version: 17
-            - name: Install NDK
+
+      - name: Install NDK
         run: |
           SDKM=/usr/local/lib/android/sdk/cmdline-tools/latest/bin/sdkmanager
           if [ ! -f "$SDKM" ]; then
@@ -20,6 +21,7 @@ jobs:
           echo "sdkmanager: $SDKM"
           yes | $SDKM --licenses > /dev/null || true
           $SDKM "ndk;27.0.12077973" "cmake;3.22.1" "build-tools;36.0.0" "platforms;android-36"
+
       - name: Create keystore
         run: |
           keytool -genkeypair -v -keystore TMessagesProj/config/release.keystore \
